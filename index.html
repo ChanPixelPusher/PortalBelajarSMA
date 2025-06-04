@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMA Learning Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Authentication Container -->
+  <div class="auth-container" id="authContainer">
+    <div class="auth-box">
+      <h1 class="auth-title">Portal Pembelajaran SMA</h1>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab">Login</button>
+        <button class="auth-tab" id="registerTab">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form active">
+        <div class="form-group">
+          <label for="loginEmail">Email/NIS</label>
+          <input type="text" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="auth-button">Masuk</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="registerName">Nama Lengkap</label>
+          <input type="text" id="registerName" required>
+        </div>
+        <div class="form-group">
+          <label for="registerNis">NIS</label>
+          <input type="text" id="registerNis" required>
+        </div>
+        <div class="form-group">
+          <label for="registerKelas">Kelas</label>
+          <select id="registerKelas" required>
+            <option value="">Pilih Kelas</option>
+            <option value="10">Kelas 10</option>
+            <option value="11">Kelas 11</option>
+            <option value="12">Kelas 12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="registerConfirmPassword">Konfirmasi Password</label>
+          <input type="password" id="registerConfirmPassword" required>
+        </div>
+        <button type="submit" class="auth-button">Daftar</button>
+      </form>
+
+      <div id="authMessage" class="auth-message"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard-container" id="dashboardContainer" style="display: none;">
+    <header>
+      <button class="menu-button" id="menuButton" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1 class="header-title">Portal Pembelajaran SMA</h1>
+      <div class="user-greeting" id="userGreeting"></div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+      <div class="user-profile">
+        <div class="profile-pic" id="profilePic">A</div>
+        <div class="profile-info">
+          <h4 id="sidebarUserName">Nama Siswa</h4>
+          <p id="sidebarUserClass">Kelas 10</p>
+        </div>
+      </div>
+
+      <ul class="menu-list">
+        <li class="menu-section">Menu Utama</li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="dashboard">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+          </a>
+        </li>
+
+        <li class="menu-section">Pelajaran</li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="matematika">
+            <i class="fas fa-square-root-alt"></i>
+            <span>Matematika</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="fisika">
+            <i class="fas fa-atom"></i>
+            <span>Fisika</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="kimia">
+            <i class="fas fa-flask"></i>
+            <span>Kimia</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="biologi">
+            <i class="fas fa-dna"></i>
+            <span>Biologi</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="bahasa">
+            <i class="fas fa-language"></i>
+            <span>Bahasa</span>
+          </a>
+        </li>
+
+        <li class="menu-section">Fitur Lain</li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="jadwal">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Jadwal Pelajaran</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="nilai">
+            <i class="fas fa-chart-bar"></i>
+            <span>Nilai & Raport</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="tugas">
+            <i class="fas fa-tasks"></i>
+            <span>Tugas & PR</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="forum">
+            <i class="fas fa-comments"></i>
+            <span>Forum Diskusi</span>
+          </a>
+        </li>
+
+        <!-- ✅ Tambahan menu Hasil Skor -->
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="skor">
+            <i class="fas fa-star"></i>
+            <span>Hasil Skor</span>
+          </a>
+        </li>
+
+        <li class="menu-section">Akun</li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" data-page="profile">
+            <i class="fas fa-user-cog"></i>
+            <span>Profil Saya</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="#" class="menu-link" id="logoutButton">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Keluar</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="main-content" id="mainContent">
+      <!-- Dashboard Page -->
+      <div class="dashboard-page" id="dashboardPage">
+        <h2 id="welcomeMessage">Selamat Datang di Portal Pembelajaran</h2>
+        <p class="dashboard-description">Sistem pembelajaran online untuk siswa SMA</p>
+
+        <div class="dashboard-cards">
+          <div class="card card-math">
+            <div class="card-icon">
+              <i class="fas fa-square-root-alt"></i>
+            </div>
+            <h3>Matematika</h3>
+            <p>Materi, latihan soal, dan pembahasan</p>
+            <button class="card-button" data-page="matematika">Buka</button>
+          </div>
+
+          <div class="card card-physics">
+            <div class="card-icon">
+              <i class="fas fa-atom"></i>
+            </div>
+            <h3>Fisika</h3>
+            <p>Konsep fisika dan percobaan virtual</p>
+            <button class="card-button" data-page="fisika">Buka</button>
+          </div>
+
+          <div class="card card-chemistry">
+            <div class="card-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3>Kimia</h3>
+            <p>Tabel periodik dan reaksi kimia</p>
+            <button class="card-button" data-page="kimia">Buka</button>
+          </div>
+
+          <div class="card card-biology">
+            <div class="card-icon">
+              <i class="fas fa-dna"></i>
+            </div>
+            <h3>Biologi</h3>
+            <p>Struktur sel dan sistem tubuh</p>
+            <button class="card-button" data-page="biologi">Buka</button>
+          </div>
+
+          <div class="card card-schedule">
+            <div class="card-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Jadwal</h3>
+            <p>Jadwal pelajaran harian</p>
+            <button class="card-button" data-page="jadwal">Buka</button>
+          </div>
+
+          <div class="card card-assignment">
+            <div class="card-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h3>Tugas</h3>
+            <p>Daftar tugas dan PR</p>
+            <button class="card-button" data-page="tugas">Buka</button>
+          </div>
+        </div>
+
+        <div class="recent-activity">
+          <h3><i class="fas fa-history"></i> Aktivitas Terkini</h3>
+          <ul class="activity-list" id="activityList">
+            <!-- Diisi oleh JavaScript -->
+          </ul>
+        </div>
+      </div>
+
+      <div id="dynamicContent"></div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
